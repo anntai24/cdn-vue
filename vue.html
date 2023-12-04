@@ -1,43 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
 
-  <body>
-    <!-- 可以直接透過在 {{}}  裡面放變數  ，來呈現想要的資料 -->
-    <div id="app">{{message}}</div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
 
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<body>
+  <!-- 可以直接透過在 {{}}  裡面放變數  ，來呈現想要的資料 -->
+  <div id="app">
+    {{ message }}
+    <div>
+      數字: {{ count }}
+    </div>
+    <!-- v-on:(完整寫法) + 監聽的事件名(click) => 點擊事件 -->
+    <button type="button" v-on:click="count++">增加(完整寫法)</button>
 
-    <script>
-      const { createApp } = Vue;
+    <!-- @(簡寫) +監聽的事件名(click) => 點擊事件 -->
+    <button type="button" @click="count++">增加</button>
 
-      createApp({
-        // ES6之前的寫法\\
-        // data: function () {
-        //     return {
-        //         message: 'hellow Vue!'
-        //     };
-        // }
+    <!--  -->
+    <button type="button" @click="count++">增加</button>
+  </div>
 
-        // 現在的寫法\\
-        // 資料(宣告資料的分區)
-        data() {
-          // 資料這區一定要return
-          return {
-            message: 'Hello Vue!',
-          };
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      // ES6之前的寫法\\
+      // data: function () {
+      //     return {
+      //         message: 'hellow Vue!'
+      //     };
+      // }
+
+      // 現在的寫法\\
+      // 資料(宣告資料的分區)
+      data() {
+        // 資料這區一定要return
+        return {
+          message: 'Hello Vue!',
+          array: [],
+          Object: {},
+          count: 0,
+        };
+      },
+
+      // 函式(function)區塊
+      methods: {
+        // 寫function的地方
+        addCount() {
+          // 取不到count
+          // count++;
+
+          // 要到其他分區取資料 要用this
+          console.log(this);
+          this.count++;
+
         },
+      },
+    }).mount('#app'); //功能套用在id="app"裡面 => 名字也可以改成別的
+    //   just testing
+  </script>
+</body>
 
-        // 函式(function)區塊
-        methods: {
-          // 寫function的地方
-        },
-      }).mount('#app'); //功能套用在id="app"裡面 => 名字也可以改成別的
-      //   just testing
-    </script>
-  </body>
 </html>
