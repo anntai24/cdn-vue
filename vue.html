@@ -22,7 +22,6 @@
     <!-- @(簡寫) +監聽的事件名(click) => 點擊事件 -->
     <button type="button" @click="addCount()">增加(函式)</button>
 
-
     <hr>
     <!-- v-model (通常在input身上)  (雙向綁定)   
       (但input type = file的時候【不能用!】) -->
@@ -30,6 +29,22 @@
     <!-- input值為多少 資料就跟著變動， 反過來說也一樣 -->
     {{inputText}}
 
+    <hr>
+
+    <!-- v-if (判斷式) => 假設為真 該元素會出現在文件內，
+      反之，不出現在文件內  -->
+    <div>
+      <div>戰力:{{power}}</div>
+      <button type="button" @click="power++">增加戰力 </button>
+      <button type="button" @click="power--">減少戰力 </button>
+      <img v-if="power < 5" src="./img/corgi1.jpg" alt="">
+      <img v-else-if="power < 10" src="./img/corgi2.jpg" alt="">
+      <img v-else src="./img/corgi3.jpg" alt="">
+
+      <!-- v-show=(判斷式) => 假設為真 該元素會移除display:none
+      反之，會增加display:none -->
+      <div v-show="power > 5">v-show</div>
+    </div>
   </div>
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        img {
+            width: 250px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- v-bind: +屬性 (屬性綁定) (完整寫法)-->
+        <img v-bind:src="imgPath" alt="" @click="changeImage()">
+
+        <!-- : +屬性 (屬性綁定) (簡寫)-->
+        <!-- <img :src="imgPath" alt="" @click="changeImage()"> -->
+        <!-- <h1 v-bind:class="'red'">屬性綁定</h1> -->
+
+        <!-- <hr>
+        <img src="./img/corgi1.jpg" alt=""> -->
+    </div>
+
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    state: 1,
+                    imgPath: './img/corgi1.jpg',
+                };
+            },
+
+            methods: {
+                changeImage() {
+                    // 換圖
+                    // this.imgPath = './img/corgi3.jpg'
+                    if (this.state === 1) {
+                        this.imgPath = './img/corgi2.jpg';
+                        this.state = 2;
+                    }
+                    else if (this.state === 2) {
+                        this.imgPath = './img/corgi3.jpg';
+                        this.state = 3;
+                    }
+                    else {
+                        this.imgPath = './img/corgi1.jpg';
+                        this.state = 1;
+                    }
+
+                },
+            },
+
+        }).mount('#app');
+    </script>
+</body>
+
+</html>
