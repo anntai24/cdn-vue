@@ -8,22 +8,29 @@
 </head>
 
 <body>
+  <!-- 東西要記得寫在id="app"的</div>裡面 -->
   <!-- 可以直接透過在 {{}}  裡面放變數  ，來呈現想要的資料 -->
   <div id="app">
     {{ message }}
-    <div>
-      數字: {{ count }}
-    </div>
+    <div>數字: {{ count + 100 }}</div>
     <!-- v-on:(完整寫法) + 監聽的事件名(click) => 點擊事件 -->
     <button type="button" v-on:click="count++">增加(完整寫法)</button>
 
     <!-- @(簡寫) +監聽的事件名(click) => 點擊事件 -->
     <button type="button" @click="count++">增加(簡寫)</button>
 
-    <!--  -->
+    <!-- @(簡寫) +監聽的事件名(click) => 點擊事件 -->
     <button type="button" @click="addCount()">增加(函式)</button>
-  </div>
 
+
+    <hr>
+    <!-- v-model (通常在input身上)  (雙向綁定)   
+      (但input type = file的時候【不能用!】) -->
+    <input v-model="inputText" type="text">
+    <!-- input值為多少 資料就跟著變動， 反過來說也一樣 -->
+    {{inputText}}
+
+  </div>
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
@@ -47,6 +54,7 @@
           array: [],
           Object: {},
           count: 0,
+          inputText: '',
         };
       },
 
@@ -60,7 +68,6 @@
           // 要到其他分區取資料 要用this
           console.log(this);
           this.count++;
-
         },
       },
     }).mount('#app'); //功能套用在id="app"裡面 => 名字也可以改成別的
